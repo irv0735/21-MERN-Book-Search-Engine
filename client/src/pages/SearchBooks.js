@@ -68,6 +68,7 @@ const SearchBooks = () => {
     }
 
     try {
+// UPDATE TO USE GRAPH QL
       const response = await saveBook(bookToSave, token);
 
       if (!response.ok) {
