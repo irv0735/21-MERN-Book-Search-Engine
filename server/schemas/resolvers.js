@@ -15,7 +15,7 @@ const resolvers = {
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
       if (!user) {
-        throw new Error('Unable to create new User');
+        return res.status(400).json({ message: 'Something is wrong!' });
       }
       const token = signToken(user);
       return { token, user };
@@ -24,17 +24,17 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('No profile with this email found!');
+        throw new AuthenticationError("Invalid email or password");
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect password!');
+        throw new AuthenticationError("Invalid email or password");
       }
 
       const token = signToken(user);
-      return { token, user };
+      return { token, user }
     },
     saveBook: async (parent, { input }, context) => {
       if (context.user) {
