@@ -12,7 +12,7 @@ const resolvers = {
   },
 
   Mutation: {
-    createUser: async (parent, args) => {
+    addUser: async (parent, args) => {
       const user = await User.create(args);
       if (!user) {
         throw new Error('Unable to create new User');
