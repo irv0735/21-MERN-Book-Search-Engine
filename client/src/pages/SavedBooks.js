@@ -8,7 +8,7 @@ import { DELETE_BOOK } from '../utils/mutations';
 import { GET_USER } from '../utils/queries';
 
 const SavedBooks = () => {
-  const [userData, setUserData] = useState({});
+  // const [userData, setUserData] = useState({});
   const { loading, data } = useQuery(GET_USER);
   const userData = data?.getSingleUser || [];
 
@@ -58,8 +58,8 @@ const SavedBooks = () => {
         throw new Error('something went wrong!');
       }
 
-      const updatedUser = { ...userData, ...data }
-      setUserData(updatedUser);
+      // const updatedUser = { ...userData, ...data }
+      // setUserData(updatedUser);
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
