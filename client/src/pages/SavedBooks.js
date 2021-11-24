@@ -12,7 +12,7 @@ const SavedBooks = () => {
   const { loading, data } = useQuery(GET_USER);
   const userData = data?.getSingleUser || [];
 
-  const [deleteBook, { error }] = useMutation(DELETE_BOOK);
+  const [deleteBook] = useMutation(DELETE_BOOK);
 
   // use this to determine if `useEffect()` hook needs to run again
   // const userDataLength = Object.keys(userData).length;
@@ -58,8 +58,6 @@ const SavedBooks = () => {
         throw new Error('something went wrong!');
       }
 
-      // const updatedUser = { ...userData, ...data }
-      // setUserData(updatedUser);
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
       window.location.reload();
